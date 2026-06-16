@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Me — Personal Profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f6f1e8;
+    --paper-line: #d8cfc0;
+    --ink: #25241f;
+    --moss: #5c6e4f;
+    --coral: #d9714e;
+    --pencil: #948a7a;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.6;
+    background-image:
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 38px,
+        var(--paper-line) 39px
+      );
+  }
+
+  .page {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 60px 32px 100px;
+  }
+
+  /* Header */
+  header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 16px;
+    margin-bottom: 48px;
+  }
+
+  .eyebrow {
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--pencil);
+  }
+
+  header h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
+    margin: 4px 0 0;
+    line-height: 1.05;
+  }
+
+  .date-stamp {
+    font-size: 0.85rem;
+    color: var(--pencil);
+    text-align: right;
+    white-space: nowrap;
+    padding-left: 16px;
+  }
+
+  /* Main layout */
+  .entry {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* Photo, taped polaroid style */
+  .photo-wrap {
+    background: #fff;
+    padding: 14px 14px 38px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    transform: rotate(-2.5deg);
+    position: relative;
+  }
+
+  .photo-wrap::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(3deg);
+    width: 70px;
+    height: 24px;
+    background: rgba(217, 113, 78, 0.55);
+  }
+
+  .photo-wrap img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    filter: sepia(8%) contrast(1.02);
+  }
+
+  .photo-caption {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--pencil);
+    text-align: center;
+    margin-top: 10px;
+    transform: rotate(-2.5deg);
+  }
+
+  /* Intro text */
+  .intro h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.6rem;
+    margin: 0 0 4px;
+  }
+
+  .intro .role {
+    color: var(--moss);
+    font-weight: 500;
+    margin: 0 0 18px;
+    font-size: 1rem;
+  }
+
+  .intro p {
+    margin: 0 0 16px;
+    max-width: 46em;
+  }
+
+  .intro strong {
+    background: linear-gradient(180deg, transparent 65%, #f1d9c9 65%);
+  }
+
+  /* Tags */
+  .tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+
+  .tags span {
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    padding: 5px 14px;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* Favorite site — library catalog card */
+  .catalog-card {
+    margin-top: 56px;
+    border: 2px solid var(--ink);
+    background: #fffdf8;
+    max-width: 460px;
+    position: relative;
+    box-shadow: 6px 6px 0 var(--moss);
+  }
+
+  .catalog-card .tab {
+    position: absolute;
+    top: -14px;
+    left: 24px;
+    background: var(--coral);
+    color: #fffdf8;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    font-weight: 700;
+  }
+
+  .catalog-card .card-body {
+    padding: 32px 24px 22px;
+  }
+
+  .catalog-card .field {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 8px;
+    font-size: 0.9rem;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--paper-line);
+  }
+
+  .catalog-card .field:last-of-type {
+    border-bottom: none;
+  }
+
+  .catalog-card .field span:first-child {
+    color: var(--pencil);
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    padding-top: 2px;
+  }
+
+  .catalog-card a.visit {
+    display: inline-block;
+    margin-top: 18px;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 2px solid var(--coral);
+    padding-bottom: 2px;
+  }
+
+  .catalog-card a.visit:hover {
+    color: var(--coral);
+  }
+
+  footer {
+    margin-top: 70px;
+    font-size: 0.8rem;
+    color: var(--pencil);
+    border-top: 1px solid var(--paper-line);
+    padding-top: 16px;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .entry {
+      grid-template-columns: 1fr;
+    }
+    .photo-wrap {
+      width: 200px;
+      margin: 0 auto;
+    }
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .date-stamp { text-align: left; padding-left: 0; }
+  }
+
+  /* Reduced motion / focus visibility */
+  a:focus-visible, a.visit:focus-visible {
+    outline: 3px solid var(--coral);
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <header>
+      <div>
+        <div class="eyebrow">Personal Profile</div>
+        <h1>Janab Saniya</h1>
+      </div>
+      <div class="date-stamp">Entry No. 014<br>Updated June 2026</div>
+    </header>
+
+    <div class="entry">
+      <div>
+        <div class="photo-wrap">
+          <!-- Replace the src below with the path to your own photo -->
+          <img src="https://picsum.photos/seed/jordan/400/400" alt="Portrait photo of Jordan Avery">
+        </div>
+        <p class="photo-caption">at the desk, mid-thought</p>
+      </div>
+
+      <div class="intro">
+        <h2>
+            <b>Hi, I'm Saniya</b>
+        </h2>
+        <p>
+      <i>course:btech ML&AI CSE</i>
+        </p>
+        <U>P P SAVANI UNIVERSITY</U>
+        <p>
+         I build <strong>clean, accessible interfaces</strong> for small businesses and the
+      occasional side project that never quite ships. By day I'm tangled in CSS grids;
+      by evening I'm usually redrawing the map of a city I've never visited.
+        </p>
+
+      <a href="https://claude.ai/"> <b>My Favorite link </b> </a>
+
+        <div class="tags">
+          <span>HTML &amp; CSS</span>
+          <span>UI Design</span>
+          <span>Cartography</span>
+          <span>Coffee</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="catalog-card">
+      <div class="tab">Favourite Site</div>
+      <div class="card-body">
+        <div class="field"><span>Title</span><span>MDN Web Docs</span></div>
+        <div class="field"><span>Subject</span><span>Web development reference &amp; guides</span></div>
+        <div class="field"><span>Note</span><span>Where every "how do I..." question eventually leads.</span></div>
+        <a class="visit" href="https://developer.mozilla.org" target="_blank" rel="noopener noreferrer">Visit site →</a>
+      </div>
+    </div>
+
+    <footer>
+      Thanks for stopping by. This page was written by hand, line by line.
+    </footer>
+
+  </div>
+</body>
+</html>
